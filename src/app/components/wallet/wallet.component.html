@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let wallet of wallets">
+        <th scope="row">1</th>
+        <td >{{wallet.id}}</td>
+        <td>{{wallet.balance}}</td>
+        <td>{{wallet.toVerify}}</td>
+        <td></td>
+        
+      </tr>
+    </tbody>
+  </table>

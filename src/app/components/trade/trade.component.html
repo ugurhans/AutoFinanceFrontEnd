@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id</th>
+        <th scope="col">SellDate</th>
+        <th scope="col">Supplier</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Product</th>
+        <th scope="col">Trade</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trade of trades">
+        <th scope="row">1</th>
+        <td>{{trade.id}}</td>
+        <td>{{trade.sellDate}}</td>
+        <td>{{trade.supplierId}}</td>
+        <td>{{trade.customerId}}</td>
+        <td>{{trade.productId}}</td>
+        <td>{{trade.tradeAmount}}</td>        
+      </tr>
+    </tbody>
+  </table>
