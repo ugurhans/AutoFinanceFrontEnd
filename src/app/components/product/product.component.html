@@ -18,7 +18,7 @@
         <td>{{ product.name }}</td>
         <td>{{ product.price  | currency: "TRY":"TL":""}}</td>
         <td>{{ product.supplierId}}</td>
-        <td *ngIf="product.toVerify==false">{{ product.toVerify}}</td>
+        <td>{{ product.toVerify}}</td>
         <button
           style="margin: 8px"
           type="button"

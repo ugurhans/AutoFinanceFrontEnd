@@ -16,4 +16,8 @@ export class CategoryService {
     let newPath  = this.apiUrl + "categories/getall" 
     return this.httpClient.get<ListResponseModel<Category>>(newPath);
   }
+
+  add(category:Category){
+    return this.httpClient.post(this.apiUrl + 'categories/addcategory',category);
+  }
 }
