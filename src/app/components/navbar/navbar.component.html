@@ -1,4 +1,4 @@
-<!-- <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+<header class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow position-fixed">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/homepage">Company name</a>
   <button
     class="navbar-toggler position-absolute d-md-none collapsed"
@@ -15,9 +15,9 @@
     <li class="nav-item text-nowrap">
       <div class="text">
         <button routerLink='/profile' type="text" class="btn btn-outline-light me-2">
-          {{user.name}}   {{user.lastName}} 
+          {{getUserStorage()  }}
         </button>
-        <button  type="button" class="btn btn-warning">
+        <button (click)="signOut()" type="button" class="btn btn-warning">
           Log Out
         </button>
       </div>
@@ -94,13 +94,13 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/wallet-verify">
               <span data-feather="file-text"></span>
               Verify Wallets
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/product-verify">
               <span data-feather="file-text"></span>
               Verify Products
             </a>
@@ -134,4 +134,4 @@
     </nav>
   </div>
 </div>
- -->
+

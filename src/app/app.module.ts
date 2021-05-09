@@ -20,6 +20,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { CustomerAddComponent } from './components/customer-add/customer-add.component';
 import { UserAuthorizationComponent } from './components/user-authorization/user-authorization.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -39,6 +41,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     CustomerAddComponent,
     UserAuthorizationComponent,
     ProfileComponent,
+    HomepageComponent,
+    FooterComponent,
     
 
     

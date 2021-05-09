@@ -11,8 +11,8 @@
     </thead>
   
     <tbody>
-      <tr *ngFor="let product of products" class="table">
-        
+      <tr *ngFor="let product of products"  class="table">
+       
         <td>{{ product.id }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.name }}</td>
@@ -20,11 +20,13 @@
         <td>{{ product.supplierId}}</td>
         <td>{{ product.toVerify}}</td>
         <button
+        
           style="margin: 8px"
           type="button"
           class="btn btn-outline-secondary"
+          (click)="verifyProduct(product)"
         >
-          Take Info
+          Verify
         </button>
       </tr>
     </tbody>

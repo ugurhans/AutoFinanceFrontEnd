@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Wallet } from 'src/app/models/wallet';
 import { WalletService } from 'src/app/services/wallet.service';
 
@@ -9,14 +10,24 @@ import { WalletService } from 'src/app/services/wallet.service';
 })
 export class WalletComponent implements OnInit {
   wallets :Wallet[] =[];
-  constructor(private walletService:WalletService) { }
+  wallet!:Wallet;
+  constructor(
+    private walletService:WalletService,
+    private toastrService:ToastrService
+    ) { }
 
   ngOnInit(): void {
     this.getWallets();
   }
   getWallets(){
-    this.walletService.getSuppliers().subscribe(response=>{
+    this.walletService.getWallets().subscribe(response=>{
       this.wallets = response.data
+    })
+  }
+
+  verifyWallet(wallet:Wallet){
+    this.walletService.verifyWallet(wallet).subscribe(response=>{
+      this.toastrService.success("Wallet Verified")
     })
   }
 }

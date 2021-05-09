@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   user!: User;
   userDto!: UserDto;
   ngOnInit(): void {
-    this.getUser();
+    
   }
 
   isAdmin() {
@@ -49,6 +49,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  getUserStorage(){
+    let name = localStorage.getItem("name");
+    return name;
+  }
   getUser() {
     this.userService
       .getByEmail(this.localStorageService.get('email')!)
