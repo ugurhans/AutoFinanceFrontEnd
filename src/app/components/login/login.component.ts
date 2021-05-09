@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms"
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
+import { UserDto } from 'src/app/models/userDto';
 import { AuthService } from 'src/app/services/auth.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
@@ -16,14 +17,15 @@ import { UserService } from 'src/app/services/user.service';
 
 
 export class LoginComponent implements OnInit {
-  user!:User;
+  userDto!: UserDto;
+  user!: User;
   loginForm!: FormGroup;
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
     private toastrService: ToastrService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private userService:UserService
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -51,12 +53,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  getUser(email:string){
-    this.userService.getByEmail(email).subscribe(response=> {
+  getUser(email: string) {
+    this.userService.getByEmail(email).subscribe(response => {
       this.user = response.data;
       this.localStorageService.set('email', this.user.email);
-      this.localStorageService.set('fullName', this.user.name + " " + this.user.lastName);
-      
+      this.localStorageService.set('name', this.user.name + " " + this.user.lastName);
+      this.localStorageService.set('id',this.user.id.toString())
+
     });
+  }
 }
-}
+
+

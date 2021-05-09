@@ -1,0 +1,73 @@
+<div class="container" style="width: 100%; height: 864px">
+  <div
+    class="row justify-content-center align-items-center"
+    style="margin-top: 1rem"
+  >
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header"><h5>Kullanıcı Bilgileri</h5></div>
+        <div class="card-body">
+          <form [formGroup]="userUpdateForm">
+            <div class="mb-3">
+              <label for="name">Adınız</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="firstName"
+                  formControlName="firstName"
+                  class="form-control"
+                  placeholder="{{ user.name }}"
+                  [(ngModel)]="user.name"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="lastName">Soyadınız</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="lastName"
+                  formControlName="lastName"
+                  class="form-control"
+                  placeholder="{{ user.lastName }}"
+                  [(ngModel)]="user.lastName"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email">E-Mail</label>
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="email"
+                  formControlName="email"
+                  class="form-control"
+                  placeholder="{{ user.email }}"
+                  [(ngModel)]="user.email"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password">Parola</label>
+              <div class="form-group">
+                <input
+                  type="password"
+                  id="password"
+                  formControlName="password"
+                  class="form-control"
+                  placeholder="{{ user.password }}"
+                  [(ngModel)]="user.password"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="update()">
+            Bilgileri Güncelle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

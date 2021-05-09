@@ -16,6 +16,10 @@ import { LoginComponent } from './components/login/login.component'
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from "ngx-toastr";
+import { RegisterComponent } from './components/register/register.component';
+import { CustomerAddComponent } from './components/customer-add/customer-add.component';
+import { UserAuthorizationComponent } from './components/user-authorization/user-authorization.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -31,6 +35,10 @@ import {ToastrModule} from "ngx-toastr";
     TradeComponent,
     ProductAddComponent,
     LoginComponent,
+    RegisterComponent,
+    CustomerAddComponent,
+    UserAuthorizationComponent,
+    ProfileComponent,
     
 
     

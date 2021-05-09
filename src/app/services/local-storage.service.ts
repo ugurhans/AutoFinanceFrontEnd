@@ -7,20 +7,19 @@ export class LocalStorageService {
 
   constructor() { }
 
-  set(key: string, value: string) {
-    localStorage.setItem(key, value);
+  get(key: string) {
+    return localStorage.getItem(key);
   }
 
-  get(key: string): string | null {
-    let value = localStorage.getItem(key);
-    return value;
+  set(key: string, value: string) {
+    localStorage.setItem(key, value);
   }
 
   remove(key: string) {
     localStorage.removeItem(key);
   }
 
-  clear() {
+  clean() {
     localStorage.clear();
   }
 }
