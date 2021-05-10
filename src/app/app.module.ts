@@ -22,6 +22,7 @@ import { UserAuthorizationComponent } from './components/user-authorization/user
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { OrderComponent } from './components/order/order.component';
 
 
 
@@ -43,6 +44,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ProfileComponent,
     HomepageComponent,
     FooterComponent,
+    OrderComponent,
     
 
     
