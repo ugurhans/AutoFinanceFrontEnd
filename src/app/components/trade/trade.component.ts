@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Trade } from 'src/app/models/trade';
+import { TradeDto } from 'src/app/models/tradeDto';
 import { TradeService } from 'src/app/services/trade.service';
 
 @Component({
@@ -8,11 +9,12 @@ import { TradeService } from 'src/app/services/trade.service';
   styleUrls: ['./trade.component.css']
 })
 export class TradeComponent implements OnInit {
+  tradesDto:TradeDto []=[];
 trades:Trade[]=[];
   constructor(private tradeService:TradeService) { }
 
   ngOnInit(): void {
-    this.getTrades();
+    this.getTradesDto();
   }
 
   getTrades(){
@@ -21,4 +23,9 @@ trades:Trade[]=[];
     })
   }
 
+  getTradesDto(){
+    this.tradeService.getTradesDto().subscribe(response=>{
+      this.tradesDto = response.data;
+    })
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Order } from 'src/app/models/order';
+import { OrderDto } from 'src/app/models/orderDto';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { OrderService } from 'src/app/services/order.service';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-
+  ordersDetails:OrderDto[] =[];
   orders:Order[]=[];
   constructor(
     private orderService:OrderService,
@@ -17,7 +18,7 @@ export class OrderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getOrders();
+    this.getOrdersDetail();
   }
 
   getOrders(){
@@ -26,4 +27,13 @@ export class OrderComponent implements OnInit {
     })
     this.toastrService.success("Ordes Get Succesfuly")
   }
+
+  getOrdersDetail(){
+    this.orderService.getOrdersDetail().subscribe(response=>{
+      this.ordersDetails = response.data;
+    })
+    this.toastrService.success("Ordes Get Succesfuly")
+  }
+
+
 }

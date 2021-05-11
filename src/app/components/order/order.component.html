@@ -11,12 +11,12 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let order of orders" class="table">
+    <tr *ngFor="let order of ordersDetails" class="table">
       <td>{{ order.id }}</td>
       <td>{{ order.orderProductName }}</td>
       <td>{{ order.orderAmount }}</td>
       <td>{{ order.price | currency: "TRY":"TL":"" }}</td>
-      <td>{{ order.customerId }}</td>
+      <td>{{ order.customerName }}</td>
       
       <button
         style="margin: 8px"
