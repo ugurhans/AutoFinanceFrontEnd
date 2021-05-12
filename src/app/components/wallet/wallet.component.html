@@ -8,12 +8,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let wallet of wallets">
+    <tr *ngFor="let wallet of walletDto">
       <th scope="row">1</th>
-      <td>{{ wallet.id }}</td>
+      <td>{{ wallet.userName }}</td>
+      <td>{{ wallet.userLastName }}</td>
       <td>{{ wallet.balance }}</td>
       <td>{{ wallet.toVerify }}</td>
-      <button (click)="verifyWallet(wallet)" type="button" class="btn btn-outline-secondary">Verify</button>
+      <td>{{ wallet.userId }}</td>
+      <button (click)="getWalletByUserId(wallet.userId)"></button>
     </tr>
   </tbody>
 </table>

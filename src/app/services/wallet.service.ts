@@ -5,6 +5,7 @@ import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { Wallet } from '../models/wallet';
+import { WalletDto } from '../models/walletDto';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,21 @@ export class WalletService {
     return this.httpClient.get<ListResponseModel<Wallet>>(newPath);
   }
 
+  getWalletsDto(): Observable<ListResponseModel<WalletDto>> {
+    let newPath = this.apiUrl + "wallets/getalldetails";
+    return this.httpClient.get<ListResponseModel<WalletDto>>(newPath);
+  }
+
   verifyWallet(wallet:Wallet):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiUrl + 'wallets/verifywallet',wallet)
+  }
+
+  getWalletById(userId: number): Observable<SingleResponseModel<Wallet>> {
+    let newPath = this.apiUrl + "wallets/getalldetailsbyUserId?userId=" + userId;
+    return this.httpClient.get<SingleResponseModel<Wallet>>(newPath);
+  }
+
+  add(wallet: Wallet): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'wallets/addwallet', wallet);
   }
 }

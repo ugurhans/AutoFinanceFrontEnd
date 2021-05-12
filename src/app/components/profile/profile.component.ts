@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
 import { User } from 'src/app/models/user';
-import { UserDto } from 'src/app/models/userDto';
-import { CustomerService } from 'src/app/services/customer.service';
+
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -21,7 +20,6 @@ export class ProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private userService: UserService,
-    private customerService: CustomerService,
     private localStorageService: LocalStorageService
   ) { }
 

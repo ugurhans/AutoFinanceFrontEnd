@@ -5,9 +5,8 @@ import { timer } from 'rxjs';
 import { Customer } from 'src/app/models/customer';
 import { OperationClaim } from 'src/app/models/operationClaim';
 import { User } from 'src/app/models/user';
-import { UserDto } from 'src/app/models/userDto';
+
 import { AuthService } from 'src/app/services/auth.service';
-import { CustomerService } from 'src/app/services/customer.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -23,11 +22,10 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private userService: UserService,
-    private customerService: CustomerService,
+   
     private localStorageService:LocalStorageService
   ) { }
   user!: User;
-  userDto!: UserDto;
   ngOnInit(): void {
     
   }

@@ -1,0 +1,27 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Add Money to Wallet</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="walletAddForm">
+          <div class="form-group">
+            <input
+              type="number"
+              id="balance"
+              formControlName="balance"
+              class="form-control"
+              placeholder="Balance"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="addWallet()">
+          Send Money your Balance
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
