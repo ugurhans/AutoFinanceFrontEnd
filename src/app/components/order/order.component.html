@@ -5,7 +5,6 @@
       
       <th scope="col">Product Name</th>
       <th scope="col">Order Amount</th>
-      <th scope="col">Price</th>
       <th scope="col">Customer Name</th>
     </tr>
   </thead>
@@ -15,7 +14,6 @@
       
       <td>{{ order.orderProductName }}</td>
       <td>{{ order.orderAmount }}</td>
-      <td>{{ order.price | currency: "TRY":"TL":"" }}</td>
       <td>{{ order.customerName }}</td>
       
       <button

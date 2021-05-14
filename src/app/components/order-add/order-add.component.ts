@@ -25,7 +25,6 @@ export class OrderAddComponent implements OnInit {
     this.orderAddForm = this.formBuilder.group({
       orderProductName: ["", Validators.required],
       orderAmount: ["", Validators.required],
-      price: ["", Validators.required],
      
     })
   }

@@ -30,7 +30,7 @@ export class WalletService {
     return this.httpClient.post<ResponseModel>(this.apiUrl + 'wallets/verifywallet',wallet)
   }
 
-  getWalletById(userId: number): Observable<SingleResponseModel<Wallet>> {
+  getWalletDtoById(userId: number): Observable<SingleResponseModel<Wallet>> {
     let newPath = this.apiUrl + "wallets/getalldetailsbyUserId?userId=" + userId;
     return this.httpClient.get<SingleResponseModel<Wallet>>(newPath);
   }
@@ -38,4 +38,15 @@ export class WalletService {
   add(wallet: Wallet): Observable<ResponseModel> {
     return this.httpClient.post<ResponseModel>(this.apiUrl + 'wallets/addwallet', wallet);
   }
+
+  update(wallet: Wallet): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'wallets/updatewallet', wallet);
+  }
+
+
+  getWalletById(userId: number): Observable<SingleResponseModel<Wallet>> {
+    let newPath = this.apiUrl + "wallets/getallByUserId?userId=" + userId;
+    return this.httpClient.get<SingleResponseModel<Wallet>>(newPath);
+  }
+
 }

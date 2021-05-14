@@ -10,6 +10,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { timer } from 'rxjs';
+import { WalletService } from 'src/app/services/wallet.service';
+import { Wallet } from 'src/app/models/wallet';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +25,8 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private toastrService: ToastrService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private walletService:WalletService
   ) { }
 
   ngOnInit(): void {

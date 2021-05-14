@@ -10,40 +10,50 @@ import { WalletService } from 'src/app/services/wallet.service';
   styleUrls: ['./wallet.component.css'],
 })
 export class WalletComponent implements OnInit {
-  wallets: Wallet[] = [];
-  wallet!: Wallet;
-  walletDto: WalletDto[] = [];
+ 
+  dataLoad:boolean=false;
+  localUserId!:number;
+  usersWallet!:Wallet;
+  usersWalletDto:WalletDto[]=[];
+
+  usersWaitingWallet:WalletDto[]=[];
+
   constructor(
+
     private walletService: WalletService,
     private toastrService: ToastrService
+
   ) {}
 
+
+
   ngOnInit(): void {
-    this.getWalletsDto();
-  }
-  getWallets() {
-    this.walletService.getWallets().subscribe((response) => {
-      this.wallets = response.data;
-    });
+
+  this.getUser();
+  this.getUsersWalletDto();
   }
 
-  getWalletsDto() {
-    this.walletService.getWalletsDto().subscribe((response) => {
-      this.walletDto = response.data;
-    });
+  getUsersWalletDto(){
+    this.walletService.getWalletsDto().subscribe(response=>{
+      this.usersWalletDto= response.data;
+      console.log(this.usersWalletDto)
+      this.dataLoad=true;
+    })
   }
 
   verifyWallet(walletDto:WalletDto) {
-    console.log("id" + walletDto.userId)
-    this.getWalletByUserId(walletDto.userId);
-    this.walletService.verifyWallet(this.wallet).subscribe((response) => {
-      this.toastrService.success('Wallet Verified');
-    });
+    let walletModel:Wallet = {
+      id:walletDto.walletId,
+      balance:walletDto.balance,
+      toVerify:false,
+      userId:walletDto.userId
+    }
+    this.walletService.verifyWallet(walletModel).subscribe(response=>{
+      this.toastrService.success("Wallet Verified")
+    })
   }
 
-  getWalletByUserId(userId:number){
-    this.walletService.getWalletById(userId).subscribe(response=>{
-      this.wallet = response.data;
-    })
+  getUser(){
+    this.localUserId=parseInt(localStorage.getItem("id")!)
   }
 }

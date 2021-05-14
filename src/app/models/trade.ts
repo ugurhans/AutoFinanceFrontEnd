@@ -1,9 +1,9 @@
 export interface Trade{
     id:number;
-    productId:number;
+    productName:string;
     customerId:number;
     supplierId:number;
     sellDate:Date;
     tradeAmount:number;
-    orderId:number;
+    tradePrice:number;
 }

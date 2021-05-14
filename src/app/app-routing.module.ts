@@ -15,6 +15,7 @@ import { UserAuthorizationComponent } from './components/user-authorization/user
 import { WalletComponent } from './components/wallet/wallet.component';
 import { LoginGuard } from './guards/login.guard';
 
+
 const routes: Routes = [
   { path: 'products', component: ProductComponent },
   { path: 'homepage', component: HomepageComponent },
@@ -26,14 +27,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'user/auth', component: UserAuthorizationComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'wallet-verify', component: WalletComponent },
+  { path: 'profile', component: ProfileComponent,},
+  { path: 'wallet-verify', component: WalletComponent, canActivate: [LoginGuard], },
   { path: 'product-verify', component: ProductVerifyComponent },
-  { path: 'product-add', component: ProductAddComponent },
+  { path: 'product-add', component: ProductAddComponent, canActivate: [LoginGuard]},
   { path: 'orders', component: OrderComponent },
   { path: 'trades', component: TradeComponent },
-  { path: 'add-wallet', component: AddWalletComponent },
-  { path: 'add-order', component: OrderAddComponent }
+  { path: 'add-wallet', component: AddWalletComponent, canActivate: [LoginGuard] },
+  { path: 'add-order', component: OrderAddComponent , canActivate: [LoginGuard]}
 
 ];
 

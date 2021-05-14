@@ -2,19 +2,19 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Id</th>
+        <th scope="col">Product</th>
         <th scope="col">SellDate</th>
         <th scope="col">Supplier</th>
         <th scope="col">Customer</th>
-        <th scope="col">Product</th>
-        <th scope="col">Trade</th>
+        <th scope="col">Trade Amount</th>
+        
 
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let trade of tradesDto">
-        <th scope="row">1</th>
-        <td>{{trade.id}}</td>
+        <th scope="row"></th>
+        <td>{{trade.productName}}</td>
         <td>{{trade.sellDate}}</td>
        <td>{{trade.supplierName}}</td>
        <td>{{trade.customerName}}</td>

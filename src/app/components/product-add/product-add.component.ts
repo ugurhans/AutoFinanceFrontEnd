@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ProductService } from 'src/app/services/product.service';
 import { __assign } from 'tslib';
 @Component({
@@ -13,7 +14,8 @@ export class ProductAddComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private localStorageService:LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class ProductAddComponent implements OnInit {
       stockAmount: ["", Validators.required],
       description: ["", Validators.required],
       toVerify: [false, Validators.required],
+      supplierId:[parseInt(localStorage.getItem("id")!),Validators.required]
     })
   }
   addProduct() {

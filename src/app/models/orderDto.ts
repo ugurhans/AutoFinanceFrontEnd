@@ -3,6 +3,6 @@ export interface OrderDto{
     orderProductName:string;
     orderAmount:Int16Array;
     customerName:string;
-    price:number;
+    
     
 }

@@ -4,4 +4,5 @@ export interface WalletDto{
     userLastName:string;
     balance:number;
     toVerify:boolean;
+    walletId:number;
 }

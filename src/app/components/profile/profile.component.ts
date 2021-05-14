@@ -6,9 +6,12 @@ import { OperationClaim } from 'src/app/models/operationClaim';
 import { OperationClaimDto } from 'src/app/models/operationClaimDto';
 import { User } from 'src/app/models/user';
 import { UserOperationClaim } from 'src/app/models/userOperationClaims';
+import { Wallet } from 'src/app/models/wallet';
+import { WalletDto } from 'src/app/models/walletDto';
 
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
+import { WalletService } from 'src/app/services/wallet.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,16 +22,21 @@ export class ProfileComponent implements OnInit {
   userUpdateForm!: FormGroup;
   user!: User;
   usersClaims:OperationClaimDto[]=[];
+  usersWallet!:WalletDto[];
+  userWallet!:Wallet;
+  dataLoad!:Boolean;
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private userService: UserService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private walletService:WalletService
   ) { }
 
   ngOnInit(): void {
     this.createUserUpdateForm();
     this.getUsersClaims();
+    this.getWallet();
   }
   createUserUpdateForm() {
     this.userUpdateForm = this.formBuilder.group({  
@@ -62,6 +70,22 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserClaimsById(userId).subscribe(response=>{
       this.usersClaims = response.data;
       console.log(this.usersClaims)
+    })
+  }
+
+  // getWallet(){
+  //   this.walletService.getVerifiedWalletDtoById(parseInt(this.localStorageService.get("id")!)).subscribe(response=>{
+  //     this.usersWallet = response.data;
+  //     console.log(this.usersWallet)
+  //   });
+  // }
+
+
+  getWallet(){
+    let userId =  parseInt(this.localStorageService.get("id")!);
+    this.walletService.getWalletById(userId).subscribe(response=>{
+      this.userWallet = response.data
+      console.log(this.userWallet)
     })
   }
 }

@@ -3,6 +3,6 @@ export interface Order{
     orderProductName:string;
     orderAmount:number;
     userId:number;
-    price:number;
+    
     
 }
