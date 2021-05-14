@@ -5,4 +5,5 @@ export interface Trade{
     supplierId:number;
     sellDate:Date;
     tradeAmount:number;
+    orderId:number;
 }

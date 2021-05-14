@@ -3,5 +3,6 @@ export interface User{
     name:string;
     lastName:string;
     email:string;
-    password:string
+    passwordSalt:string;
+    passwordHash:string;
 }

@@ -2,7 +2,7 @@ export interface Order{
     id:number;
     orderProductName:string;
     orderAmount:number;
-    customerId:number;
+    userId:number;
     price:number;
-
+    
 }

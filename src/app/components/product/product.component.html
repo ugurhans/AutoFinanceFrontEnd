@@ -1,33 +1,27 @@
+<div class="container">
+  <table class="table table-hover">
+  <thead class="thead-inverse">
+    <tr>
+      <th scope="col">Product Name</th>
+      <th scope="col">Category Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">StockAmount</th>
+      <th scope="col">Description</th>
+      <th scope="col">SupplierName</th>
+    </tr>
+  </thead>
 
-<table class="table table-hover">
-    <thead class="thead-inverse">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">BRAND</th>
-        <th scope="col">MODEL YEAR</th>
-        <th scope="col">COLOR</th>
-        <th scope="col">KDV</th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <tr *ngFor="let product of products"  class="table">
-       
-        <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price  | currency: "TRY":"TL":""}}</td>
-        <td>{{ product.supplierId}}</td>
-        <td>{{ product.toVerify}}</td>
-        <button
-        
-          style="margin: 8px"
-          type="button"
-          class="btn btn-outline-secondary"
-          (click)="verifyProduct(product)"
-        >
-          Verify
-        </button>
-      </tr>
-    </tbody>
-  </table>
+  <tbody>
+    <tr *ngFor="let product of productDto" class="table">
+      <td>{{ product.name }}</td>
+      <td>{{ product.categoryName }}</td>
+      <td>{{ product.price | currency: "TRY":"TL":"" }}</td>
+      <td>{{ product.stockAmount }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.supplierName }}</td>
+      <button type="button" class="btn btn-outline-success">Details</button>
+    </tr>
+  </tbody>
+</table>
+</div>
+

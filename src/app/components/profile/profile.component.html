@@ -50,3 +50,22 @@
     </div>
   </div>
 </div>
+<table class="table table-hover">
+  <thead class="thead-inverse">
+    <tr>
+      <th scope="col">Product Name</th>
+      <th scope="col">Category Name</th>
+   
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let claim of usersClaims" class="table">
+      <td>{{ claim.operationClaimName}}</td>
+     
+     
+      <button type="button" class="btn btn-outline-success">Details</button>
+    </tr>
+  </tbody>
+</table>
+

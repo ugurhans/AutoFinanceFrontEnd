@@ -1,0 +1,26 @@
+<div class="container">
+  <table class="table table-hover">
+    <thead class="thead-inverse">
+      <tr>
+        <th scope="col">Product Name</th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">StockAmount</th>
+        <th scope="col">Description</th>
+        <th scope="col">SupplierName</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let product of productDto" class="table">
+        <td>{{ product.name }}</td>
+        <td>{{ product.categoryName }}</td>
+        <td>{{ product.price | currency: "TRY":"TL":"" }}</td>
+        <td>{{ product.stockAmount }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.supplierName }}</td>
+        <button (click)="verifyProduct(product.productId)" type="button" class="btn btn-warning">Warning</button>
+      </tr>
+    </tbody>
+  </table>
+</div>

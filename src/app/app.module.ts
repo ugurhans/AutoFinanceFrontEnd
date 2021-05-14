@@ -22,6 +22,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { OrderComponent } from './components/order/order.component';
 import { AddWalletComponent } from './components/add-wallet/add-wallet.component';
+import { OrderAddComponent } from './components/order-add/order-add.component';
+import { ProductVerifyComponent } from './components/product-verify/product-verify.component';
 
 
 
@@ -43,6 +45,8 @@ import { AddWalletComponent } from './components/add-wallet/add-wallet.component
     FooterComponent,
     OrderComponent,
     AddWalletComponent,
+    OrderAddComponent,
+    ProductVerifyComponent,
 
 
 

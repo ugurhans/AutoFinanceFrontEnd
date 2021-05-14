@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { LoginModel } from '../models/loginModel';
 import { RegisterModel } from '../models/registerModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
-import { TokenModel } from '../models/tokemModel';
+import { TokenModel } from '../models/tokenModel';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({

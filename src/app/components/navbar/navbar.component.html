@@ -64,7 +64,18 @@
               Products
             </a>
           </li>
-         
+          <li class="nav-item">
+            <a class="nav-link" href="/add-order">
+              <span data-feather="file-text"></span>
+              Be a Customer
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/product-add">
+              <span data-feather="file-text"></span>
+              Be a Supplier
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/add-wallet">
               <span data-feather="bar-chart-2"></span>
@@ -87,7 +98,7 @@
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
-        <ul class="nav flex-column mb-2">
+        <ul *ngIf="isAdmin()" class="nav flex-column mb-2">
           <li class="nav-item">
             <a class="nav-link" href="/wallet-verify">
               <span data-feather="file-text"></span>
@@ -110,18 +121,6 @@
             <a class="nav-link" href="#">
               <span data-feather="file-text"></span>
               Year-end trade
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/products/add">
-              <span data-feather="file-text"></span>
-              Be a Customer
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Be a Supplier
             </a>
           </li>
         </ul>

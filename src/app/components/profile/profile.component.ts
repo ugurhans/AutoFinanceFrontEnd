@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
+import { OperationClaim } from 'src/app/models/operationClaim';
+import { OperationClaimDto } from 'src/app/models/operationClaimDto';
 import { User } from 'src/app/models/user';
+import { UserOperationClaim } from 'src/app/models/userOperationClaims';
 
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,7 +18,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
   userUpdateForm!: FormGroup;
   user!: User;
-  userId!: number;
+  usersClaims:OperationClaimDto[]=[];
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
@@ -24,8 +27,8 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
     this.createUserUpdateForm();
+    this.getUsersClaims();
   }
   createUserUpdateForm() {
     this.userUpdateForm = this.formBuilder.group({  
@@ -54,15 +57,11 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-   getUser(){
-     this.userService.getByEmail(this.localStorageService.get("email")!).subscribe(response=>{
-       this.user = response.data;
-     })
-   }
-
-  // getCustomerByUserId(userId: number) {
-  //   this.customerService.getCustomerById(userId).subscribe((response) => {
-  //     this.customer = response.data;
-  //   });
-  // }
+  getUsersClaims(){
+    let userId =  parseInt(this.localStorageService.get("id")!);
+    this.userService.getUserClaimsById(userId).subscribe(response=>{
+      this.usersClaims = response.data;
+      console.log(this.usersClaims)
+    })
+  }
 }

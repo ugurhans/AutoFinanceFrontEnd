@@ -27,13 +27,14 @@ export class ProductAddComponent implements OnInit {
       price: ["", Validators.required],
       stockAmount: ["", Validators.required],
       description: ["", Validators.required],
-      supplierId: ["", Validators.required],
       toVerify: [false, Validators.required],
     })
   }
   addProduct() {
     if (this.productAddForm.valid) {
       let productModel = Object.assign({}, this.productAddForm.value)
+      productModel.userId = parseInt(localStorage.getItem("id")!);
+      console.log(productModel)
       this.productService.add(productModel).subscribe(response => {
         this.toastrService.success(response.message);
       }, responseError => {

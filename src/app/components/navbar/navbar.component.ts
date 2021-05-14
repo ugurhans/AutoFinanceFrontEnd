@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { timer } from 'rxjs';
 import { Customer } from 'src/app/models/customer';
 import { OperationClaim } from 'src/app/models/operationClaim';
+import { OperationClaimDto } from 'src/app/models/operationClaimDto';
 import { User } from 'src/app/models/user';
 
 import { AuthService } from 'src/app/services/auth.service';
@@ -16,7 +17,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  userClaims: OperationClaim[] = [];
+  usersClaims:OperationClaimDto[]=[];
+  
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -27,16 +29,39 @@ export class NavbarComponent implements OnInit {
   ) { }
   user!: User;
   ngOnInit(): void {
-    
+    this.getUsersClaims();
   }
 
   isAdmin() {
-    for (let i = 0; i < this.userClaims.length; i++) {
-      if (this.userClaims[i].name == 'admin') {
-        return true;
-      }
+  for (let i = 0; i < this.usersClaims.length; i++) {
+    if(this.usersClaims[i].operationClaimName=="admin")
+    return true
+  }
+   return false;
+  }
+
+  isCustomer() {
+    for (let i = 0; i < this.usersClaims.length; i++) {
+      if(this.usersClaims[i].operationClaimName=="customer")
+      return true
     }
-    return false;
+     return false;
+    }
+
+    isSupplier() {
+      for (let i = 0; i < this.usersClaims.length; i++) {
+        if(this.usersClaims[i].operationClaimName=="supplier")
+        return true
+      }
+       return false;
+      }
+
+  getUsersClaims(){
+    let userId =  parseInt(this.localStorageService.get("id")!);
+    this.userService.getUserClaimsById(userId).subscribe(response=>{
+      this.usersClaims = response.data;
+      console.log(this.usersClaims)
+    })
   }
 
   checkAuthenticated() {
@@ -56,26 +81,14 @@ export class NavbarComponent implements OnInit {
       .getByEmail(this.localStorageService.get('email')!)
       .subscribe((response) => {
         this.user = response.data;
-        this.userService.getUserClaims(this.user);
       });
   }
-  getUserClaims(user: User) {
-    this.userService.getUserClaims(user).subscribe((response) => {
-      this.userClaims = response.data;
-    });
-  }
-  // getUserDetail() {
-  //   let mail = localStorage.getItem("email");
-  //   this.userService.getByEmail(mail!).subscribe(response => {
-  //     this.user = response.data;
-  //     this.toastr.success(this.user.id.toString());
-  //   });
-  // }
+ 
 
   signOut() {
     this.localStorageService.clean();
     timer(25).subscribe((p) => {
-      window.location.href = '/';
+      window.location.href = '/homepage';
     });
   }
 

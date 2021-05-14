@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/models/product';
+import { ProductDto } from 'src/app/models/productDto';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,7 +11,12 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
+
+
   products: Product[] = [];
+  productDto:ProductDto[]=[];
+
+  
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
@@ -19,11 +25,7 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.router.url == '/product-verify') {
-      this.getUnVerifiedProduct();
-    } else {
-      this.getVerifiedProduct();
-    }
+   this.getVerifiedProductDto();
   }
 
   get() {
@@ -31,25 +33,35 @@ export class ProductComponent implements OnInit {
     return userName;
   }
 
-  getProducts() {
+  getAllProducts() {
     this.productService.getProducts().subscribe((response) => {
       this.products = response.data;
     });
   }
 
-  getUnVerifiedProduct() {
-    this.productService.getProductsUnVerified().subscribe((response) => {
-      this.products = response.data;
+
+
+  getAllProductsDto() {
+    this.productService.getProductsDto().subscribe((response) => {
+      this.productDto = response.data;
     });
   }
+ 
+  
   getVerifiedProduct() {
     this.productService.getProductsVerified().subscribe((response) => {
       this.products = response.data;
     });
   }
-  verifyProduct(product: Product) {
-    this.productService.verifyProduct(product).subscribe((response) => {
-      this.toastrService.success("Product Verified");
+
+
+  getVerifiedProductDto() {
+    this.productService.getProductsDtoVerified().subscribe((response) => {
+      this.productDto = response.data;
     });
   }
+
+
+
+
 }

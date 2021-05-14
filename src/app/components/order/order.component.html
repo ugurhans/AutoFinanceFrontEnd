@@ -2,17 +2,17 @@
 <table class="table table-hover">
   <thead class="thead-inverse">
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">BRAND</th>
-      <th scope="col">MODEL YEAR</th>
-      <th scope="col">COLOR</th>
-      <th scope="col">KDV</th>
+      
+      <th scope="col">Product Name</th>
+      <th scope="col">Order Amount</th>
+      <th scope="col">Price</th>
+      <th scope="col">Customer Name</th>
     </tr>
   </thead>
 
   <tbody>
     <tr *ngFor="let order of ordersDetails" class="table">
-      <td>{{ order.id }}</td>
+      
       <td>{{ order.orderProductName }}</td>
       <td>{{ order.orderAmount }}</td>
       <td>{{ order.price | currency: "TRY":"TL":"" }}</td>

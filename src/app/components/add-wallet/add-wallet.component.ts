@@ -29,7 +29,7 @@ export class AddWalletComponent implements OnInit {
   addWallet() {
     if (this.walletAddForm.valid) {
       let walletModel = Object.assign({}, this.walletAddForm.value)
-      walletModel.userId = parseInt(localStorage.getItem("id")!);
+      walletModel.userId = parseInt(localStorage.getItem("id")!)
       this.walletService.add(walletModel).subscribe(response => {
         this.toastrService.success(response.message);
       }, responseError => {

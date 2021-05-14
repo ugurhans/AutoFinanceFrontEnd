@@ -33,9 +33,9 @@ export class WalletComponent implements OnInit {
     });
   }
 
-  verifyWallet() {
-    let userId = parseInt(localStorage.getItem("id")!);
-     this.getWalletByUserId(userId)
+  verifyWallet(walletDto:WalletDto) {
+    console.log("id" + walletDto.userId)
+    this.getWalletByUserId(walletDto.userId);
     this.walletService.verifyWallet(this.wallet).subscribe((response) => {
       this.toastrService.success('Wallet Verified');
     });
@@ -45,7 +45,5 @@ export class WalletComponent implements OnInit {
     this.walletService.getWalletById(userId).subscribe(response=>{
       this.wallet = response.data;
     })
-
-    
   }
 }

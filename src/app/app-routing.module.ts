@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddWalletComponent } from './components/add-wallet/add-wallet.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
+import { OrderAddComponent } from './components/order-add/order-add.component';
 import { OrderComponent } from './components/order/order.component';
 import { ProductAddComponent } from './components/product-add/product-add.component';
+import { ProductVerifyComponent } from './components/product-verify/product-verify.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -26,10 +28,12 @@ const routes: Routes = [
   { path: 'user/auth', component: UserAuthorizationComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'wallet-verify', component: WalletComponent },
-  { path: 'product-verify', component: ProductComponent },
+  { path: 'product-verify', component: ProductVerifyComponent },
+  { path: 'product-add', component: ProductAddComponent },
   { path: 'orders', component: OrderComponent },
   { path: 'trades', component: TradeComponent },
-  { path: 'add-wallet', component: AddWalletComponent }
+  { path: 'add-wallet', component: AddWalletComponent },
+  { path: 'add-order', component: OrderAddComponent }
 
 ];
 

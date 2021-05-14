@@ -8,8 +8,6 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { OperationClaim } from 'src/app/models/operationClaim';
 import { User } from 'src/app/models/user';
-import { OperationClaimsService } from 'src/app/services/operation-claims.service';
-import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-user-authorization',
@@ -24,8 +22,6 @@ export class UserAuthorizationComponent implements OnInit {
   claimAddForm!: FormGroup;
   constructor(
     private userService: UserService,
-    private operationClaimService: OperationClaimsService,
-    private userOperationClaimService: UserOperationClaimService,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder
   ) { }
@@ -50,7 +46,7 @@ export class UserAuthorizationComponent implements OnInit {
   }
 
   getClaims() {
-    this.operationClaimService.getAll().subscribe((response) => {
+    this.userService.getAllClaims().subscribe((response) => {
       this.claims = response.data;
     });
   }
@@ -62,7 +58,7 @@ export class UserAuthorizationComponent implements OnInit {
       userOperationClaimModel.operationClaimId = Number(
         userOperationClaimModel.operationClaimId
       );
-      this.userOperationClaimService
+      this.userService
         .addClaim(userOperationClaimModel)
         .subscribe(
           (response) => {
