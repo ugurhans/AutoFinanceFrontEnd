@@ -19,8 +19,15 @@
         <td>{{ product.stockAmount }}</td>
         <td>{{ product.description }}</td>
         <td>{{ product.supplierName }}</td>
-        <button (click)="verifyProduct(product.productId)" type="button" class="btn btn-warning">Warning</button>
+        <button
+          (click)="verifyProduct(product.productId)"
+          type="button"
+          class="btn btn-warning"
+        >
+          Verify
+        </button>
       </tr>
     </tbody>
   </table>
 </div>
+

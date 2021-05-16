@@ -3,4 +3,7 @@ export interface RegisterModel {
     lastName: string;
     email: string;
     password: string;
+    tcNo:number;
+    phone:number;
+    address:string;
   }

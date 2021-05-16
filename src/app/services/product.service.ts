@@ -42,7 +42,7 @@ export class ProductService {
 
 
   getProductsVerified(): Observable<ListResponseModel<Product>> {
-    let newPath = this.apiUrl + "products/getallproductverified";
+    let newPath = this.apiUrl + "products/getallproductsverified";
     return this.httpClient.get<ListResponseModel<Product>>(newPath);
   }
 

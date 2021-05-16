@@ -39,12 +39,17 @@ export class RegisterComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
+      tcNo:["",Validators.required],
+      phone:["",Validators.required],
+      adress:["",Validators.required]
     });
   }
 
   register() {
     if (this.registerForm.valid) {
+      
       let registerModel = Object.assign({}, this.registerForm.value);
+      console.log(registerModel)
       this.authService.register(registerModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Başarılı');

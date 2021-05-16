@@ -28,4 +28,8 @@ export class TradeService {
   add(trade: Trade): Observable<ResponseModel> {
     return this.httpClient.post<ResponseModel>(this.apiUrl + 'trades/addtrade', trade);
   }
+
+  delete(trade: Trade): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'trades/deletetrade', trade);
+  }
 }

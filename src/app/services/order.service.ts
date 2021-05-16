@@ -6,6 +6,7 @@ import { Order } from '../models/order';
 import { OrderDto } from '../models/orderDto';
 import { Product } from '../models/product';
 import { ResponseModel } from '../models/responseModel';
+import { SingleResponseModel } from '../models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,18 @@ export class OrderService {
     return  this.httpClient.get<ListResponseModel<Order>>(newPath);
   }
 
+  getOrdersByUserIdOrder(userId:number):Observable<ListResponseModel<Order>>{
+    let newPath = this.apiUrl + "orders/getbyuserid?userId="+userId;
+    return  this.httpClient.get<ListResponseModel<Order>>(newPath);
+  }
+
   getOrdersDetail():Observable<ListResponseModel<OrderDto>>{
     let newPath = this.apiUrl + "orders/getalldto";
+    return  this.httpClient.get<ListResponseModel<OrderDto>>(newPath);
+  }
+
+  getOrdersDetailByUserId(userId:number):Observable<ListResponseModel<OrderDto>>{
+    let newPath = this.apiUrl + "orders/getalldtobyuserid?userId="+userId;
     return  this.httpClient.get<ListResponseModel<OrderDto>>(newPath);
   }
 
