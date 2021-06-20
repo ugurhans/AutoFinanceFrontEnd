@@ -20,6 +20,7 @@
       <td>{{ product.description }}</td>
       <td>{{ product.supplierName }}</td>
       <button type="button" class="btn btn-outline-success">Details</button>
+      <button (click)="delete(product.productId)" type="button" class="btn btn-outline-success">Delete</button>
     </tr>
   </tbody>
 </table>

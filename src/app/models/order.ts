@@ -1,8 +1,8 @@
 export interface Order{
-    id:number;
+    orderId:number;
     orderProductName:string;
     orderAmount:number;
     userId:number;
-    
+    orderPrice:number;
     
 }

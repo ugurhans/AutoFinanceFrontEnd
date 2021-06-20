@@ -10,29 +10,39 @@ import { OrderService } from 'src/app/services/order.service';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  ordersDetails:OrderDto[] =[];
-  orders:Order[]=[];
+  ordersDetails!: OrderDto[];
+  orders!: Order[];
+  order!: Order;
   constructor(
-    private orderService:OrderService,
-    private toastrService:ToastrService
+    private orderService: OrderService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
     this.getOrdersDetail();
   }
 
-  getOrders(){
-    this.orderService.getOrders().subscribe(response=>{
+  delete(orderId: number) {
+    this.orderService.getOrderById(orderId).subscribe(response => {
+      this.order = response.data;
+      this.orderService.delete(this.order).subscribe(response=>{
+        this.toastrService.success("Deleted");
+      })
+    })
+  }
+  getOrders() {
+    this.orderService.getOrders().subscribe(response => {
       this.orders = response.data;
     })
     this.toastrService.success("Ordes Get Succesfuly")
   }
 
-  getOrdersDetail(){
-    this.orderService.getOrdersDetail().subscribe(response=>{
+  getOrdersDetail() {
+    this.orderService.getOrdersDetail().subscribe(response => {
       this.ordersDetails = response.data;
+      this.toastrService.success("Ordes Get Succesfuly")
     })
-    this.toastrService.success("Ordes Get Succesfuly")
+   
   }
 
 

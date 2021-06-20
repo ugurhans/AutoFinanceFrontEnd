@@ -3,7 +3,7 @@
     <thead class="thead-inverse">
       <tr>
         <th scope="col">Product Name</th>
-        <th scope="col">Category Name</th>
+        <th scope="col">App Name</th>
         <th scope="col">Price</th>
         <th scope="col">StockAmount</th>
         <th scope="col">Description</th>
@@ -24,7 +24,14 @@
           type="button"
           class="btn btn-warning"
         >
-          Verify
+          Verify Product
+        </button>
+        <button
+          (click)="delete(product.productId)"
+          type="button"
+          class="btn btn-warning"
+        >
+          Delete
         </button>
       </tr>
     </tbody>

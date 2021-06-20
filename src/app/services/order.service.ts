@@ -21,8 +21,13 @@ export class OrderService {
     return  this.httpClient.get<ListResponseModel<Order>>(newPath);
   }
 
-  getOrdersByUserIdOrder(userId:number):Observable<ListResponseModel<Order>>{
-    let newPath = this.apiUrl + "orders/getbyuserid?userId="+userId;
+  getOrderById(productId: number): Observable<SingleResponseModel<Order>> {
+    let newPath = this.apiUrl + "orders/getbyid?orderId="+productId;
+    return this.httpClient.get<SingleResponseModel<Order>>(newPath);
+  }
+
+  getOrdersByUserIdOrder(userId:number,orderName:string):Observable<ListResponseModel<Order>>{
+    let newPath = this.apiUrl + "orders/getbyuserid?userId="+userId+"&orderName="+orderName;
     return  this.httpClient.get<ListResponseModel<Order>>(newPath);
   }
 

@@ -12,7 +12,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductComponent implements OnInit {
 
-
+  product!:Product;
   products: Product[] = [];
   productDto:ProductDto[]=[];
 
@@ -39,7 +39,14 @@ export class ProductComponent implements OnInit {
     });
   }
 
-
+  delete(productId: number) {
+    this.productService.getProductsById(productId).subscribe((response) => {
+      this.product = response.data;
+      this.productService.delete(this.product).subscribe((response) => {
+        this.toastrService.success('Deleted product ');
+      });
+    });
+  }
 
   getAllProductsDto() {
     this.productService.getProductsDto().subscribe((response) => {

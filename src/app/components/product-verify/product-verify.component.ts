@@ -6,6 +6,7 @@ import { Order } from 'src/app/models/order';
 import { Product } from 'src/app/models/product';
 import { ProductDto } from 'src/app/models/productDto';
 import { Trade } from 'src/app/models/trade';
+import { TradeA } from 'src/app/models/tradeA';
 import { Wallet } from 'src/app/models/wallet';
 import { OrderService } from 'src/app/services/order.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -53,129 +54,54 @@ export class ProductVerifyComponent implements OnInit {
   verifyProduct(productId: number) {
     this.productService.getProductsById(productId).subscribe((response) => {
       this.product = response.data;
-      console.log(this.product);
       this.productService.verifyProduct(this.product).subscribe((response) => {
-        console.log('doğrulandı');
+        this.toastrService.success('Succes Verify');
         this.orderService.getOrders().subscribe((response) => {
           this.orders = response.data
-            .sort()
+            .sort((o) => o.orderPrice)
             .filter(
               (data) =>
                 data.orderProductName.toLowerCase() ==
-                this.product.name.toLowerCase()
+                  this.product.name.toLowerCase() &&
+                data.orderPrice <= this.product.price
             );
-          console.log('Orders Get', this.orders);
-          this.orders.forEach((orderFirst) => {
-            var tradeAmountExist;
-            if (orderFirst.orderAmount >= this.product.stockAmount) {
-              tradeAmountExist = this.product.stockAmount;
-              console.log(tradeAmountExist);
-            } else {
-              tradeAmountExist = orderFirst.orderAmount;
-            }
-            let trade: Trade = {
-              id: 0,
-              customerId: orderFirst.userId,
-              productName: this.product.name,
-              supplierId: this.product.supplierId,
-              tradeAmount: tradeAmountExist,
-              sellDate: new Date(),
-              tradePrice: tradeAmountExist * this.product.price,
-            };
-            this.tradeService.add(trade).subscribe((response) => {
-              console.log('add trade e geld,', trade);
-              this.walletService
-                .getWalletById(trade.customerId)
-                .subscribe((response) => {
-                  this.customerWallet = response.data;
-                  console.log('customer wallete geldi', this.customerWallet);
-                  this.walletService
-                    .getWalletById(trade.supplierId)
-                    .subscribe((response) => {
-                      this.supplierWallet = response.data;
-                      console.log(
-                        'supplier wallete geldi',
-                        this.supplierWallet
-                      );
-                      // let tradeCost = orderFirst.orderAmount * this.product.price;
-                      if (this.customerWallet.balance > trade.tradePrice) {
-                        this.customerWallet.balance =
-                          this.customerWallet.balance - trade.tradePrice;
-                        this.supplierWallet.balance =
-                          this.supplierWallet.balance + trade.tradePrice;
-                        this.walletService
-                          .update(this.supplierWallet)
-                          .subscribe((response) => {
-                            console.log('supplier WALLET güncellendi');
-                            this.walletService
-                              .update(this.customerWallet)
-                              .subscribe((response) => {
-                                console.log('customer WALLET güncellendi');
-                                if (
-                                  orderFirst.orderAmount <
-                                  this.product.stockAmount
-                                ) {
-                                  this.product.stockAmount -=
-                                    orderFirst.orderAmount;
-                                  this.productService
-                                    .update(this.product)
-                                    .subscribe((response) => {
-                                      this.orderService
-                                        .delete(orderFirst)
-                                        .subscribe((response) => {
-                                          console.log(
-                                            'Order silindi ilk ifteyim',
-                                            orderFirst
-                                          );
-                                        });
-                                    });
-                                } else if (
-                                  orderFirst.orderAmount >
-                                  this.product.stockAmount
-                                ) {
-                                  orderFirst.orderAmount -=
-                                    this.product.stockAmount;
-                                  this.orderService
-                                    .update(orderFirst)
-                                    .subscribe((response) => {
-                                      console.log(
-                                        'ikinci ifte order güncellendi ürünü silicem'
-                                      );
-                                      this.productService
-                                        .delete(this.product)
-                                        .subscribe((response) => {
-                                          console.log(
-                                            'ikinci ifteyim ürünü de sildim',
-                                            this.product
-                                          );
-                                        });
-                                    });
-                                } else {
-                                  this.orderService
-                                    .delete(orderFirst)
-                                    .subscribe((response) => {
-                                      this.productService
-                                        .delete(this.product)
-                                        .subscribe((response) => {
-                                          console.log(
-                                            'ürünü de order ı da sildim.'
-                                          );
-                                        });
-                                    });
-                                }
-                              });
-                          });
-                      } else {
-                        this.tradeService
-                          .delete(trade)
-                          .subscribe((response) => {});
-                      }
+          this.orders.forEach((order) => {
+            console.log(order);
+            this.walletService
+              .getWalletById(order.userId)
+              .subscribe((response) => {
+                this.customerWallet = response.data;
+                this.walletService
+                  .getWalletById(this.product.supplierId)
+                  .subscribe((response) => {
+                    this.supplierWallet = response.data;
+                    console.log('customer Wallet: ', this.customerWallet);
+                    console.log('Supplier Wallet: ', this.supplierWallet);
+                    var tradeA = {
+                      productId: this.product.id,
+                      orderId: order.orderId,
+                    };
+                    console.log(tradeA);
+                    this.tradeService.addPro(tradeA).subscribe((response) => {
+                      this.toastrService.success('Trade is succesfuly');
                     });
-                });
-            });
+                  });
+              });
           });
         });
       });
     });
+  }
+
+  delete(productId: number) {
+    this.productService.getProductsById(productId).subscribe((response) => {
+      this.product = response.data;
+      this.productService.delete(this.product).subscribe((response) => {
+        this.toastrService.success('Deleted product ');
+      });
+    });
+  }
+  checkOrder() {
+    return this.orders;
   }
 }

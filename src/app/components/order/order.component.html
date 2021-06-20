@@ -12,18 +12,26 @@
   <tbody>
     <tr *ngFor="let order of ordersDetails" class="table">
       
+      <td>{{ order.orderId}}</td>
       <td>{{ order.orderProductName }}</td>
       <td>{{ order.orderAmount }}</td>
       <td>{{ order.customerName }}</td>
-      
+      <td>{{order.orderPrice}}</td>
       <button
         style="margin: 8px"
         type="button"
         class="btn btn-outline-secondary"
-        
       >
         Verify
       </button>
+      <button
+      (click)="delete(order.orderId)"
+      style="margin: 8px"
+      type="button"
+      class="btn btn-outline-secondary"
+    >
+      Delete
+    </button>
     </tr>
   </tbody>
 </table>
