@@ -58,7 +58,8 @@ export class OrderAddComponent implements OnInit {
             .filter(
               (data) =>
                 data.name.toLowerCase() ==
-                  orderModel.orderProductName.toLowerCase() && orderModel.orderPrice >= data.price
+                  orderModel.orderProductName.toLowerCase() &&
+                  orderModel.orderPrice >= data.price
             );
             console.log(this.products)
             this.products.forEach((product) => {

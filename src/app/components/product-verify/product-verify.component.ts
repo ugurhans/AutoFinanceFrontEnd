@@ -63,7 +63,7 @@ export class ProductVerifyComponent implements OnInit {
               (data) =>
                 data.orderProductName.toLowerCase() ==
                   this.product.name.toLowerCase() &&
-                data.orderPrice <= this.product.price
+                data.orderPrice >= this.product.price
             );
           this.orders.forEach((order) => {
             console.log(order);

@@ -15,6 +15,7 @@ import { Wallet } from '../models/wallet';
   providedIn: 'root'
 })
 export class TradeService {
+ 
   
 
   apiUrl = "https://localhost:44376/api/";
@@ -23,6 +24,11 @@ export class TradeService {
   
   getTrades(): Observable<ListResponseModel<Trade>> {
     let newPath = this.apiUrl + "trades/getall";
+    return this.httpClient.get<ListResponseModel<Trade>>(newPath);
+  }
+
+  getTradesDtoById(userId:number):Observable<ListResponseModel<Trade>> {
+    let newPath = this.apiUrl + "trades/getByUserId?userId="+userId;
     return this.httpClient.get<ListResponseModel<Trade>>(newPath);
   }
 

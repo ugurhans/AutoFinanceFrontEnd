@@ -45,11 +45,14 @@
         </form>
       </div>
       <div class="card-footer">
-          <button class="btn btn-fill btn-primary" (click)="update()">Update</button>
+        <button class="btn btn-fill btn-primary" (click)="update()">
+          Update
+        </button>
       </div>
     </div>
   </div>
 </div>
+<!-- 
 <table class="table table-hover">
   <thead class="thead-inverse">
     <tr>
@@ -65,21 +68,54 @@
       <button type="button" class="btn btn-outline-success">Details</button>
     </tr>
   </tbody>
-</table>
-<table class="table table-hover">
-  <thead class="thead-inverse">
-    <tr>
-      <th scope="col">Wallet</th>
-      <th scope="col">Balance</th>
-   
-    </tr>
-  </thead>
+</table> -->
+<hr class="featurette-divider" />
+<div class="col-md-12">
+  <h1>Wallet Balance</h1>
+  <table class="table table-hover">
+    <thead class="thead-inverse">
+      <tr>
+        <th scope="col">Balance</th>
+      </tr>
+    </thead>
 
-<tbody>
-    <tr>
-      <td>{{userWallet.balance}}</td><
-      <button type="button" class="btn btn-outline-success">Details</button>
-    </tr>
-  </tbody>
-</table>
+    <tbody>
+      <tr>
+        <td>{{ userWallet.balance | currency: "TRY":"TL":"" }}</td>
+        <
+        <button type="button" class="btn btn-outline-success">Details</button>
+      </tr>
+    </tbody>
+  </table>
 
+  <hr class="featurette-divider" />
+  <div class="col-md-12">
+    <h1>Old Transactions</h1>
+    <table id="table" class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product</th>
+          <th scope="col">Sell Date</th>
+          <th scope="col">Trade Amount</th>
+          <th scope="col">Trade Price</th>
+          <th scope="col">Tax</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trade of tradesDto">
+          <th scope="row"></th>
+          <td>{{ trade.productName }}</td>
+          <td>{{ trade.sellDate }}</td>
+          <td>{{ trade.tradeAmount }}</td>
+          <td>{{ trade.tradePrice }}</td>
+          <td>{{ trade.tax }}</td>
+          <button
+          type="button"
+          (click)="down()"
+          >Download</button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

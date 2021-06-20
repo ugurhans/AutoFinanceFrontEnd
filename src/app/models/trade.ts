@@ -6,4 +6,5 @@ export interface Trade{
     sellDate:Date;
     tradeAmount:number;
     tradePrice:number;
+    tax:number;
 }
