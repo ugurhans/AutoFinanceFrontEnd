@@ -21,8 +21,11 @@ export class AddWalletComponent implements OnInit {
 
   createWalletAddForm(){
     this.walletAddForm = this.formBuilder.group({
-      balance:["",Validators.required],
-      toVerify:[false,Validators.required]
+      balance:[""],
+      toVerify:[false,Validators.required],
+      balanceUs:[""],
+      balanceEur:[""],
+      balanceFr:[""],
     })
   }
 

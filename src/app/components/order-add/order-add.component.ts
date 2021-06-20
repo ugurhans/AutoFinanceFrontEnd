@@ -54,11 +54,11 @@ export class OrderAddComponent implements OnInit {
           console.log(orderModel);
           this.productService.getProductsVerified().subscribe((response) => {
             this.products = response.data
-            .sort((p) =>p.price)
+            .sort((p) =>p.price) 
             .filter(
               (data) =>
                 data.name.toLowerCase() ==
-                  orderModel.orderProductName.toLowerCase() 
+                  orderModel.orderProductName.toLowerCase() && orderModel.orderPrice >= data.price
             );
             console.log(this.products)
             this.products.forEach((product) => {

@@ -46,7 +46,10 @@ export class WalletComponent implements OnInit {
       id:walletDto.walletId,
       balance:walletDto.balance,
       toVerify:false,
-      userId:walletDto.userId
+      userId:walletDto.userId,
+      balanceEur:walletDto.balanceEur,
+      balanceFr:walletDto.balanceFr,
+      balanceUs:walletDto.balanceUs
     }
     this.walletService.verifyWallet(walletModel).subscribe(response=>{
       this.toastrService.success("Wallet Verified")

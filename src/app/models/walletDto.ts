@@ -3,6 +3,9 @@ export interface WalletDto{
     userName:string;
     userLastName:string;
     balance:number;
+    balanceEur:number;
+    balanceUs:number;
+    balanceFr:number;
     toVerify:boolean;
     walletId:number;
 }

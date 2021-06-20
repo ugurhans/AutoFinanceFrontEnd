@@ -8,11 +8,32 @@
         <form [formGroup]="walletAddForm">
           <div class="form-group">
             <input
+            type="number"
+            id="balance"
+            formControlName="balance"
+            class="form-control"
+            placeholder="Balance Tr"
+          />
+            <input
               type="number"
-              id="balance"
-              formControlName="balance"
+              id="balanceUs"
+              formControlName="balanceUs"
               class="form-control"
-              placeholder="Balance"
+              placeholder="Balance Dolar"
+            />
+            <input
+              type="number"
+              id="balanceFr"
+              formControlName="balanceFr"
+              class="form-control"
+              placeholder="Balance Frank"
+            />
+            <input
+              type="number"
+              id="balanceEur"
+              formControlName="balanceEur"
+              class="form-control"
+              placeholder="Balance Euro"
             />
           </div>
         </form>

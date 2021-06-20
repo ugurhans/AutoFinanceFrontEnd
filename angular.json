@@ -35,6 +35,7 @@
               "src/styles.css"
             ],
             "scripts": [ 
+              "node_modules/html2pdf.js/dist/html2pdf.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/alertify/lib/alertify.min.js"
